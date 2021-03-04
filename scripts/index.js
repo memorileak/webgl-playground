@@ -19,14 +19,18 @@ function main() {
         const program = createProgram(gl, vertexShader, fragmentShader);
 
         const positionAttributeLocation = gl.getAttribLocation(program, 'a_position');
+        const resolutionUniformLocation = gl.getUniformLocation(program, 'u_resolution');
         const positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
         // three 2d points
         const positions = [
-          0, 0,
-          0, 0.5,
-          0.7, 0,
+          100, 200,
+          80, 20,
+          10, 30,
+          300, 400,
+          80, 20,
+          900, 300,
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
@@ -43,6 +47,8 @@ function main() {
         // First off we need to turn the attribute on
         gl.enableVertexAttribArray(positionAttributeLocation);
 
+        gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
+
         // Bind the position buffer.
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
@@ -56,7 +62,7 @@ function main() {
 
         // draw
         const primitiveType = gl.TRIANGLES;
-        const count = 3;
+        const count = 6;
         gl.drawArrays(primitiveType, offset, count);
       })
       .catch((err) => {
