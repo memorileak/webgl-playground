@@ -25,12 +25,12 @@ function main() {
 
         // three 2d points
         const positions = [
-          100, 200,
-          80, 20,
-          10, 30,
-          300, 400,
-          80, 20,
-          900, 300,
+          0, 0,
+          0, 720,
+          1280, 0,
+          0, 720,
+          1280, 0,
+          1280, 720,
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
 
