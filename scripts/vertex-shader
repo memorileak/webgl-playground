@@ -1,15 +1,6 @@
-  attribute vec2 a_position;
-  uniform vec2 u_resolution;
-  varying vec4 v_color;
+  attribute vec2 a_xy;
+  uniform mat4 u_projection_matrix;
 
   void main() {
-    // convert 0 -> n to -1 -> 1
-    vec2 clipSpace = -1.0 + (a_position / u_resolution) * 2.0;
-
-    gl_Position = vec4(clipSpace, 0, 1);
-
-    // Convert from clip space to color space.
-    // Clip space goes -1.0 to +1.0
-    // Color space goes from 0.0 to 1.0
-    v_color = gl_Position * 0.5 + 0.5;
+    gl_Position = u_projection_matrix * vec4(a_xy, 0, 1);
   }
