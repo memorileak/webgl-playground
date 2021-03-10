@@ -174,7 +174,11 @@ function runWebGl(gl, vertexShaderSource, fragmentShaderSource) {
   const aNormalLocation = gl.getAttribLocation(program, 'a_normal');
   const uDirectionalLightLocation = gl.getUniformLocation(program, 'u_directional_light');
 
-  let cameraPosition = m4.transformVector([0, 0, 400], m4.xRotate(degToRad(-20)));
+  let cameraPosition = m4.transformVector(
+    [0, 0, 400], 
+    m4.xRotate(degToRad(-20)),
+    m4.yRotate(degToRad(20)),
+  );
 
   function draw() {
     const worldToCameraMatrix = m4.inverse(m4.cameraLookat(cameraPosition, [0, 0, 0], [0, 1, 0]));
@@ -222,7 +226,7 @@ function runWebGl(gl, vertexShaderSource, fragmentShaderSource) {
       cameraPosition = m4.transformVector(
         cameraPosition, 
         m4.yRotate(degToRad(1)), 
-        m4.xRotate(degToRad(1)), 
+        // m4.xRotate(degToRad(1)), 
       );
       draw();
     });

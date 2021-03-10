@@ -54,12 +54,12 @@ window.m4 = (function() {
   // -width/2 -> width/2 to -1 -> 1
   // -height/2 -> height/2 to -1 -> 1
   // -depth/2 -> depth/2 to -1 -> 1
-  function project(width, height, depth) {
+  function project(width, height, depth, nearScale = 1.5, farScale = 0.5) {
     return [
       2/width, 0,        0,        0,
       0,       2/height, 0,        0,
-      0,       0,        2/depth,  0,
-      0,       0,        0,        1,
+      0,       0,        2/depth,  (nearScale - farScale)/depth,
+      0,       0,        0,        (nearScale + farScale)/2,
     ];
   }
 
